@@ -51,7 +51,7 @@ sdns_coredump=$(nvram get sdns_coredump)
 adbyby_process=$(pidof adbyby | awk '{ print $1 }')
 smartdns_process=$(pidof smartdns | awk '{ print $1 }')
 IPS4="$(ifconfig br0 | grep "inet addr" | grep -v ":127" | grep "Bcast" | awk '{print $2}' | awk -F : '{print $2}')"
-IPS6="$(ifconfig br0 | grep "inet6 addr" | grep -v "fe80::" | grep -v "::1" | grep "Global" | awk '{print $3}')"
+IPS6="$(ifconfig br0 | grep "inet6 addr" | grep -v "fe80::" | grep -v "::1" | grep "Global" | awk '{print $3}') | awk -F / '{print $1}'"
 dnsmasq_md5=$(md5sum  "$dnsmasq_Conf" | awk '{ print $1 }')
 
 
